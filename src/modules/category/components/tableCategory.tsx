@@ -3,20 +3,21 @@ import { Category } from "../types/category";
 import { Trash, ChartColumnStacked } from "lucide-react";
 import { AlertDialog } from "../../../core/components/AlertDialog";
 import{ModalCategoryEdit}from "./modalCategory";
-import { PostCategory,ResponseCategoryList ,responseCategory} from "../types/category";
+import { PostCategory} from "../types/category";
 import PaginationLink from "../../../core/components/Pagination";
 import SearchInput from "../../../core/components/SearchInput"; 
+import{responseAPI,responseList} from "../../../core/types/typeGlobal";
 
 interface CustomerTableProps {
   category: Category[];
   onDelete: (id: string) => void;
-  onEdit: (formData: PostCategory,id:string) => Promise<responseCategory>;
+  onEdit: (formData: PostCategory,id:string) => Promise<responseAPI>;
   triggerAlert: () => void;
   fetchCustomers: () => void;
   setPage: (page: number) => void;
   setSize: (size: number) => void;
   setSearch:(seacrh:string)=> void;
-  categoryResponse: ResponseCategoryList ;
+  categoryResponse: responseList ;
 }
 
 export const CategoryTable = ({ category, onDelete,onEdit, triggerAlert, fetchCustomers,setPage ,setSize,setSearch,categoryResponse}: CustomerTableProps) => {
@@ -45,7 +46,7 @@ export const CategoryTable = ({ category, onDelete,onEdit, triggerAlert, fetchCu
   return (
     <div className="min-w-full bg-white rounded shadow p-4">
       <div className="mb-4  w-full">
-        <div className="w-1/2"> {/* Aquí se ajusta el ancho */}
+        <div className="w-1/2"> 
           <SearchInput
             options={category.map((c) => c.name)}
             onSearchChange={setSearch}

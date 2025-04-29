@@ -1,4 +1,4 @@
-import {Category,PostCategory } from "../types/category";
+import {Customer,PostCustomer } from "../types/customer";
 import{responseAPI,responseList} from "../../../core/types/typeGlobal";
 import axios from "axios";
 
@@ -6,10 +6,10 @@ const getToken = () => {
     return localStorage.getItem("token");  
   };
 
-export const getCategory = async (page:number, size:number,search:String):  Promise<{ categories: Category[]; response: responseList }> => {
+export const getCustomer = async (page:number, size:number,search:String):  Promise<{ customers: Customer[]; response: responseList }> => {
   const token = getToken();
   const searchParam = search ? `&search=${search}` : "";
-  const url = `http://localhost:8080/api/categories?size=${size}&page=${page}${searchParam}`;
+  const url = `http://localhost:8080/api/customers?size=${size}&page=${page}${searchParam}`;
 
   const response = await fetch(url, {
     method: "GET",
@@ -24,12 +24,12 @@ export const getCategory = async (page:number, size:number,search:String):  Prom
   const data = await response.json();
   console.log(data);
   return {
-    categories: data.data.content,
+    customers: data.data.content,
     response: data.data,          
   };
 };
 
-export const createCategory = async (categoryData: PostCategory) : Promise<responseAPI> => {
+export const createCustomer = async (categoryData: PostCustomer) : Promise<responseAPI> => {
     try {
         const token = getToken();
         if (!token) {
@@ -40,7 +40,7 @@ export const createCategory = async (categoryData: PostCategory) : Promise<respo
             Authorization: `Bearer ${token}`, 
             },
         };
-        const response = await axios.post("http://localhost:8080/api/categories", categoryData, config);
+        const response = await axios.post("http://localhost:8080/api/customers", categoryData, config);
         console.log("respuesta de la API 1 ",response)
         return {
           status: response.data.status,
@@ -57,7 +57,7 @@ export const createCategory = async (categoryData: PostCategory) : Promise<respo
     }
   };
 
-  export const editCategory = async (categoryData: PostCategory,id:string) : Promise<responseAPI> => {
+  export const editCustomer = async (categoryData: PostCustomer,id:string) : Promise<responseAPI> => {
     try {
         const token = getToken();
         if (!token) {
@@ -68,7 +68,7 @@ export const createCategory = async (categoryData: PostCategory) : Promise<respo
             Authorization: `Bearer ${token}`, 
             },
         };
-        const response = await axios.put(`http://localhost:8080/api/categories/${id}`, categoryData, config);
+        const response = await axios.put(`http://localhost:8080/api/customers/${id}`, categoryData, config);
         console.log("respuesta de la API 1 ",response)
         return {
           status: response.data.status,
@@ -85,7 +85,7 @@ export const createCategory = async (categoryData: PostCategory) : Promise<respo
     }
   };
 
-  export const deleteCategory = async (id: string) => {
+  export const deleteCustomer = async (id: string) => {
     try {
       const token = getToken();
       if (!token) {
@@ -96,7 +96,7 @@ export const createCategory = async (categoryData: PostCategory) : Promise<respo
           Authorization: `Bearer ${token}`, 
           },
       };
-      const response = await axios.delete(`http://localhost:8080/api/categories/${id}`,config);
+      const response = await axios.delete(`http://localhost:8080/api/customers/${id}`,config);
       return response.data;
     } catch (error:any) {
       console.error("Error al eliminar categoría:", error);

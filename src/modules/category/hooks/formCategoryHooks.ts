@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { createCategory } from "../services/categoryServices";
-import { PostCategory ,responseCategory} from "../types/category";
+import { PostCategory } from "../types/category";
+import{responseAPI} from "../../../core/types/typeGlobal";
 
-export const useCategoriaForm = () => {
+export const useCategoryForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [type, setType] = useState<"success" | "error" | "warning" | "info" | undefined>(undefined);
 
-  const submitCategoria = async (formData:PostCategory) : Promise<responseCategory> => {
+  const submitCategoria = async (formData:PostCategory) : Promise<responseAPI> => {
     try {
       setLoading(true);
       const response =await createCategory(formData); 

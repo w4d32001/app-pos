@@ -13,16 +13,3 @@ export interface PostCategory{
 }
 
 
-export interface responseCategory{
-    status?: number;  
-    message: string;    
-    data?: null;        
-    details?: string[];  
-}
-
-export interface ResponseCategoryList {
-    totalElements: number;   
-    totalPages: number;       
-    size: number;             
-    number: number;           
-  }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { CategoryTable } from "../components/tableCategory";
 import { useCategory, CategoryDelete } from "../hooks/categoryHooks";
-import { useCategoriaEdit } from "../hooks/modalCategory";
-import { useCategoriaForm } from "../hooks/formCategoryHooks";
+import { useCategoryEdit } from "../hooks/modalCategory";
+import { useCategoryForm } from "../hooks/formCategoryHooks";
 import { FormCategory } from "../components/formCategory";
 import { Plus } from "lucide-react";
 import { AlertMessage } from "../../../core/components/AlertMessage";
@@ -10,9 +10,9 @@ import { AlertMessage } from "../../../core/components/AlertMessage";
 const CategoryContainer = () => {
   const [showForm, setShowForm] = useState(false);
   const [alert, setAlert] = useState(false);
-  const { submitCategoria, loading, message, type ,resetMessage} = useCategoriaForm();
+  const { submitCategoria, loading, message, type ,resetMessage} = useCategoryForm();
   const { Deletecategory, messageDelete, typeDelete ,resetMessageDelete} = CategoryDelete();
-  const { editCategoria, messageEdit, typeEdit ,resetMessageEdit} = useCategoriaEdit();
+  const { editCategoria, messageEdit, typeEdit ,resetMessageEdit} = useCategoryEdit();
   const currentMessage = messageDelete || message || messageEdit;
   const currentType = typeDelete || type ||typeEdit;
   const  [page, setPage] = useState(0);

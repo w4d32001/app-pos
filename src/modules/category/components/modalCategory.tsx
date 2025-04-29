@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Pen } from 'lucide-react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Fade, Button, TextField } from '@mui/material';
-import { PostCategory, responseCategory } from "../types/category";
+import { PostCategory} from "../types/category";
+import{responseAPI} from "../../../core/types/typeGlobal";
 
 interface ModalProps {
   id: string;
@@ -9,7 +10,7 @@ interface ModalProps {
   description: string;
   triggerAlert: () => void;
   fetchCustomers: () => void;
-  EditCategoria: (formData: PostCategory,id:string) => Promise<responseCategory>;
+  EditCategoria: (formData: PostCategory,id:string) => Promise<responseAPI>;
 }
 
 export function ModalCategoryEdit({ id, name, description, triggerAlert, fetchCustomers, EditCategoria }: ModalProps) {

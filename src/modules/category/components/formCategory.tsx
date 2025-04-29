@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { PostCategory,responseCategory } from "../types/category";
+import { PostCategory } from "../types/category";
+import{responseAPI} from "../../../core/types/typeGlobal";
 
 interface FormCategoryProps {
-    submitCategoria: (formData: PostCategory) => Promise<responseCategory>;
+    submitCategoria: (formData: PostCategory) => Promise<responseAPI>;
     onClose: () => void;
     loading: boolean;
     triggerAlert: () => void; 

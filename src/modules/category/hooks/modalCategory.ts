@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { editCategory } from "../services/categoryServices";
-import { PostCategory ,responseCategory} from "../types/category";
+import { PostCategory } from "../types/category";
+import{responseAPI} from "../../../core/types/typeGlobal";
 
-export const useCategoriaEdit= () => {
+export const useCategoryEdit= () => {
   const [loadingEdit, setLoadingEdit] = useState(false);
   const [messageEdit, setMessageEdit] = useState("");
   const [typeEdit, setTypeEdit] = useState<"success" | "error" | "warning" | "info" | undefined>(undefined);
 
-  const editCategoria = async (formData:PostCategory, id:string) : Promise<responseCategory> => {
+  const editCategoria = async (formData:PostCategory, id:string) : Promise<responseAPI> => {
     try {
       setLoadingEdit(true);
       const response =await editCategory(formData,id); 

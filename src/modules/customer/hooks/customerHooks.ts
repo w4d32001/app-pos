@@ -1,32 +1,32 @@
 import { useState } from "react";
-import { Category } from "../types/category";
-import { getCategory,deleteCategory } from "../services/categoryServices";
+import { Customer } from "../types/customer";
+import { getCustomer,deleteCustomer } from "../services/customerServices";
 import{responseList} from "../../../core/types/typeGlobal";
 
-export const useCategory = (page:number, size:number,search:string) => {
-    const [categories, setCategories] = useState<Category[]>([]);
-    const [categoriesResponse, setCategoriesResponse] = useState<responseList>({totalElements: 2,totalPages: 2,size: 10,number: 0,});   
+export const useCustomer = (page:number, size:number,search:string) => {
+    const [customers, setCategories] = useState<Customer[]>([]);
+    const [customersResponse, setCategoriesResponse] = useState<responseList>({totalElements: 2,totalPages: 2,size: 10,number: 0,});   
      const fetchCustomers = async () => {
         try {
-          const data = await getCategory(page,size,search);
+          const data = await getCustomer(page,size,search);
           console.log("response",data.response)
-          console.log("categories",data.categories)
+          console.log("customers",data.customers)
           setCategoriesResponse(data.response)
-          setCategories(data.categories);
+          setCategories(data.customers);
         } catch (error) {
           console.error("Error al obtener categorias:", error);
         }};
-    return { categories, fetchCustomers ,categoriesResponse};
+    return { customers, fetchCustomers ,customersResponse};
 };
 
-export const CategoryDelete = () => {
+export const CustomerDelete = () => {
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [messageDelete, setMessageDelete] = useState("");
   const [typeDelete, setTypeDelete] = useState<"success" | "error" | "warning" | "info" | undefined>(undefined);
    
-    const Deletecategory = async (id:string) => {
+    const Deletecustomer = async (id:string) => {
         try {
-          const response = await deleteCategory(id);
+          const response = await deleteCustomer(id);
           console.log("Respuesta del servidor:", response);
           if(response.details) {
             setMessageDelete(response.details)
@@ -51,7 +51,7 @@ export const CategoryDelete = () => {
       setMessageDelete("");
       setTypeDelete(undefined);
     };
-    return { Deletecategory, loadingDelete, messageDelete ,typeDelete,resetMessageDelete};
+    return { Deletecustomer, loadingDelete, messageDelete ,typeDelete,resetMessageDelete};
   };
 
   
